@@ -83,7 +83,8 @@ function App(): React.JSX.Element {
         </View>
       </ScrollView> */}
       <Section title="MadarJaat Subha se laga wa tha">
-      Finally Backchodi Hoi Khatam          </Section>
+      Test est 
+      </Section>
           
     </SafeAreaView>
   );
