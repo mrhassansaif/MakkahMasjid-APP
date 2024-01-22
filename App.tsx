@@ -1,10 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
 import type {PropsWithChildren} from 'react';
 import {
@@ -13,99 +6,103 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  Image,
   useColorScheme,
   View,
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
 
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
+  
   return (
-    <SafeAreaView style={backgroundStyle}>
-      {/* <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
+    // <SafeAreaView>
+      <View style={styles.container}>
+      <View style={styles.body}>
+        <View style={styles.avatarContainer}>
+        <Image style={styles.avatar}
+        
+          source={{
+          uri: 'https://makkahmasjid.net/wp-content/uploads/2024/01/LOGO-1.png',
+        }}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="MAdarJaaat">
-            Merko abhi koi 10 Ghanta lag gia
-          </Section>
-          
         </View>
-      </ScrollView> */}
-      <Section title="MadarJaat Subha se laga wa tha">
-      Test est 
-      </Section>
-          
-    </SafeAreaView>
+        <View style={styles.nameContainer}>
+          <Text style={styles.name}>Makkah Masjid</Text>
+        </View>
+        <View style={styles.infoContainer}>
+          <Text style={styles.infoLabel}>Email:</Text>
+          <Text style={styles.infoText}>your@email.com</Text>
+        </View>
+        <View style={styles.infoContainer}>
+          <Text style={styles.infoLabel}>Location:</Text>
+          <Text style={styles.infoText}>Garland, TX</Text>
+        </View>
+        <View style={styles.infoContainer}>
+          <Text style={styles.infoLabel}>Bio:</Text>
+          <Text style={styles.infoText}>Your bio goes here</Text>
+        </View>
+        <View style={styles.infoContainer}>
+          <Text style={styles.infoLabel}>Portfolio:</Text>
+          <Text style={styles.infoText}>https://makkahmasjid.net</Text>
+        </View>
+      </View>
+    </View>
+    // </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    flex: 1,
+    backgroundColor: '#ECF0F3',
   },
-  sectionTitle: {
+  body: {
+    marginTop:120,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  avatarContainer: {
+    width: 140,
+    height: 140,
+    borderRadius: 70,
+    backgroundColor: '#FFFFFF',
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowRadius: 6,
+    shadowOpacity: 0.16,
+  },
+  avatar: {
+    width: 140,
+    height: 140,
+    borderRadius: 70,
+  },
+  nameContainer: {
+    marginTop: 24,
+    alignItems: 'center',
+  },
+  name: {
     fontSize: 24,
     fontWeight: '600',
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  infoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 12,
   },
-  highlight: {
-    fontWeight: '700',
+  infoLabel: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#666666',
+    marginRight: 8,
+  },
+  infoText: {
+    fontSize: 16,
   },
 });
 
