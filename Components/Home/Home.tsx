@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, View, Text, Image} from 'react-native';
+import NamazTable from './NamazTable';
 
 export const Home = () => {
   const prayerTimings = [
@@ -15,9 +16,27 @@ export const Home = () => {
       <View style={styles.div1}>
         <View style={styles.row1}>
           <View style={styles.column}>
-            <Text style={styles.rowText}>Row 1 text</Text>
-            <Text style={styles.rowText}>Row 2 text</Text>
-            <Text style={styles.rowText}>Row 3 text</Text>
+            <Text style={styles.dhuhartext}>Dhuhar</Text>
+            <Text style={styles.dhuhartime}>
+              01:15 <Text style={styles.timepm}>PM</Text>
+            </Text>
+            <View style={styles.row}>
+              <Text style={styles.rowText}>Next Prayer</Text>
+            </View>
+            <View style={styles.row}>
+              <Text style={styles.rowText}>Asr Prayer</Text>
+            </View>
+            <View style={styles.row}>
+              <Text style={styles.rowText}>05:32 PM</Text>
+            </View>
+            {/* <View style={styles.row}>
+              <View style={styles.column}>
+                <View style={[styles.dot, styles.activeDot]}></View>
+                <View style={styles.dot}></View>
+                <View style={styles.dot}></View>
+                <View style={styles.dot}></View>
+              </View>
+            </View> */}
           </View>
           <View style={styles.column}>
             <Image
@@ -82,14 +101,15 @@ export const Home = () => {
         </View>
       </View>
 
-      <View style={styles.div2}>
+      {/* Table for Prayer Timings */}
+      <NamazTable />
+      {/* <View style={styles.div2}>
         <View style={styles.row3}>
           <Text style={styles.columnText}>Prayer</Text>
           <Text style={styles.columnText}>Azan</Text>
           <Text style={styles.columnText}>Iqamah</Text>
-        </View>
+        </View> 
 
-        {/* Table for Prayer Timings */}
         {prayerTimings.map((prayer, index) => (
           <View key={index} style={styles.row4}>
             <Text style={styles.columnText2}>{prayer.name}</Text>
@@ -97,7 +117,7 @@ export const Home = () => {
             <Text style={styles.columnText2}>{prayer.iqamah}</Text>
           </View>
         ))}
-      </View>
+        </View> */}
     </View>
   );
 };
@@ -140,9 +160,38 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
   },
+  dhuhartext: {
+    fontWeight: 'bold',
+    textAlign: 'left',
+    color: 'white',
+    fontSize: 15,
+  },
+  dhuhartime: {
+    fontWeight: 'bold',
+    textAlign: 'left',
+    color: 'white',
+    fontSize: 30,
+  },
+  timepm: {
+    fontWeight: 'bold',
+    textAlign: 'left',
+    color: 'white',
+    fontSize: 12,
+  },
+  // dot: {
+  //   width: 5,
+  //   height: 5,
+  //   borderRadius: 5,
+  //   backgroundColor: 'grey',
+  // },
+  // activeDot: {
+  //   backgroundColor: 'black',
+  // },
   rowText: {
-    fontSize: 18,
-    marginBottom: 10,
+    fontSize: 13,
+    fontWeight: "bold",
+    textAlign: "left",
+    // marginBottom: 10,
   },
   image: {
     width: 100,
@@ -165,8 +214,8 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 15,
+    // justifyContent: 'space-between',
+    // marginTop: 15,
   },
   icon: {
     width: 50,
@@ -207,7 +256,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     width: '100%',
-    height: "14%"
+    height: '14%',
     // marginTop: 10,
   },
   columnText2: {
