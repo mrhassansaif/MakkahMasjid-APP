@@ -13,6 +13,7 @@
     "@react-navigation/bottom-tabs": "^6.5.11",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.17",
+    "axios": "^1.6.5",
     "iconsax-react-native": "^0.0.8",
     "native-base": "^3.4.28",
     "react": "18.2.0",

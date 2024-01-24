@@ -50,52 +50,52 @@ export const Home = () => {
             <View style={styles.column}>
               {/* Icon and title for the first column */}
               <Image
-                source={require('../Home/img/icon1.png')}
+                source={require('../Home/img/Donate.png')}
                 style={styles.icon}
               />
-              <Text style={styles.iconTitle}>Icon 1 Title</Text>
+              <Text style={styles.iconTitle}>Donations</Text>
             </View>
             <View style={styles.column}>
               {/* Icon and title for the second column */}
               <Image
-                source={require('../Home/img/icon2.png')}
+                source={require('../Home/img/dua.png')}
                 style={styles.icon}
               />
-              <Text style={styles.iconTitle}>Icon 2 Title</Text>
+              <Text style={styles.iconTitle}>Ramadan Timings</Text>
             </View>
             <View style={styles.column}>
               {/* Icon and title for the third column */}
               <Image
-                source={require('../Home/img/icon3.png')}
+                source={require('../Home/img/Qibla.png')}
                 style={styles.icon}
               />
-              <Text style={styles.iconTitle}>Icon 3 Title</Text>
+              <Text style={styles.iconTitle}>Qibla</Text>
             </View>
           </View>
           <View style={styles.row}>
             <View style={styles.column}>
               {/* Icon and title for the first column */}
               <Image
-                source={require('../Home/img/icon1.png')}
+                source={require('../Home/img/Event.png')}
                 style={styles.icon}
               />
-              <Text style={styles.iconTitle}>Icon 1 Title</Text>
+              <Text style={styles.iconTitle}>Events</Text>
             </View>
             <View style={styles.column}>
               {/* Icon and title for the second column */}
               <Image
-                source={require('../Home/img/icon2.png')}
+                source={require('../Home/img/Location.png')}
                 style={styles.icon}
               />
-              <Text style={styles.iconTitle}>Icon 2 Title</Text>
+              <Text style={styles.iconTitle}>Location</Text>
             </View>
             <View style={styles.column}>
               {/* Icon and title for the third column */}
               <Image
-                source={require('../Home/img/icon3.png')}
+                source={require('../Home/img/yt.png')}
                 style={styles.icon}
               />
-              <Text style={styles.iconTitle}>Icon 3 Title</Text>
+              <Text style={styles.iconTitle}>YouTube</Text>
             </View>
           </View>
         </View>
@@ -128,6 +128,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     width: '100%',
+    padding: 2.5,
   },
   div1: {
     width: '100%',
