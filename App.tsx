@@ -1,16 +1,17 @@
 import React from 'react';
-import { NativeBaseProvider } from 'native-base';
-import { Home } from './Components/Home/Home';
-import { TabNavigation } from './routes/TabNavigation';
-
+import {NativeBaseProvider} from 'native-base';
+import {Home} from './Components/Home/Home';
+import {TabNavigation} from './routes/TabNavigation';
 
 function App(): React.JSX.Element {
   return (
     // <View style={styles.container}>
 
     <NativeBaseProvider>
-      <Home />
+      <TabNavigation />
     </NativeBaseProvider>
+
+    //   <Home />
     // <NativeBaseProvider>
     //   <TabNavigation />
     // </NativeBaseProvider>
@@ -49,8 +50,6 @@ function App(): React.JSX.Element {
     // </SafeAreaView>
   );
 }
-
-
 
 // const styles = StyleSheet.create({
 //   container: {

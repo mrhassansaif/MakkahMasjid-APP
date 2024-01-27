@@ -82,11 +82,11 @@ const NamazTable = () => {
 
 
 const styles = StyleSheet.create({
-  container: { flex: 1, paddingTop: 2, width: "100%", borderTopStartRadius: 30, borderTopEndRadius: 30 },
-  innerContainer: {width: 360, backgroundColor: 'white', borderTopStartRadius: 30, borderTopEndRadius: 30},
-  tablecontainer: {height: 200},
+  container: { flex: 1, width: "100%", borderTopStartRadius: 30, borderTopEndRadius: 30 },
+  innerContainer: {marginLeft: 2, marginRight: 2, width: 353, backgroundColor: 'white', borderTopStartRadius: 30, borderTopEndRadius: 30},
+  tablecontainer: {height: 50},
   header: { height: 50, justifyContent: 'center', borderTopStartRadius: 30, borderTopEndRadius: 30 },
-  text: { textAlign: 'center', fontWeight: 'bold', margin: 6, color: 'black', padding: 10 },
+  text: { textAlign: 'center', fontWeight: 'bold', margin: 5, color: 'black'},
   row: { flexDirection: 'row', justifyContent: 'center' },
 });
 

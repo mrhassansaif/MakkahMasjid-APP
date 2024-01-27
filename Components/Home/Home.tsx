@@ -132,7 +132,8 @@ const styles = StyleSheet.create({
   },
   div1: {
     width: '100%',
-    height: '58%',
+    height: '61%',
+    marginBottom: 3,
     alignItems: 'center',
     backgroundColor: '#f2d2c4',
     borderBottomStartRadius: 30,

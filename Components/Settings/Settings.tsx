@@ -1,7 +1,8 @@
+import { Text } from 'native-base'
 import React from 'react'
 
 export const Settings = () => {
   return (
-    <div>Settings</div>
+    <Text>Hello World</Text>
   )
 }

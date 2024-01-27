@@ -1,7 +1,8 @@
+import { Text } from 'native-base'
 import React from 'react'
 
 export const ContactUs = () => {
   return (
-    <div>ContactUs</div>
+    <Text>Hello World</Text>
   )
 }
