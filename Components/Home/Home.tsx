@@ -15,35 +15,11 @@ export const Home = () => {
     <View style={styles.container}>
       <View style={styles.div1}>
         <View style={styles.row1}>
-          <View style={styles.column}>
-            <Text style={styles.dhuhartext}>Dhuhar</Text>
-            <Text style={styles.dhuhartime}>
-              01:15 <Text style={styles.timepm}>PM</Text>
-            </Text>
-            <View style={styles.row}>
-              <Text style={styles.rowText}>Next Prayer</Text>
-            </View>
-            <View style={styles.row}>
-              <Text style={styles.rowText}>Asr Prayer</Text>
-            </View>
-            <View style={styles.row}>
-              <Text style={styles.rowText}>05:32 PM</Text>
-            </View>
-            {/* <View style={styles.row}>
-              <View style={styles.column}>
-                <View style={[styles.dot, styles.activeDot]}></View>
-                <View style={styles.dot}></View>
-                <View style={styles.dot}></View>
-                <View style={styles.dot}></View>
-              </View>
-            </View> */}
-          </View>
-          <View style={styles.column}>
-            <Image
-              source={require('../Home/img/mpic.png')}
-              style={styles.image}
-            />
-          </View>
+        <Image
+                source={require('../Home/img/MasjidC.png')}
+                style={styles.banner}
+              />
+          
         </View>
         <View style={styles.row2}>
           <View style={styles.row}>
@@ -222,6 +198,11 @@ const styles = StyleSheet.create({
   icon: {
     width: 50,
     height: 50,
+    borderRadius: 10,
+  },
+  banner: {
+    width: 320,
+    height: 150,
     borderRadius: 10,
   },
   iconTitle: {
