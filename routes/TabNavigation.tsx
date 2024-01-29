@@ -4,12 +4,13 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import {Home} from '../Components/Home/Home';
 import {Home2, Mobile, More, MoreCircle, Setting2} from 'iconsax-react-native';
-import {Events} from '../Components/Events/Events';
+import {AboutUs} from '../Components/AboutUs/AboutUs';
 import RowComponent from '../Components/RowComponent';
 import {styles} from '../styles/global';
 import {Text} from 'native-base';
 import {ContactUs} from '../Components/ContactUs/ContactUs';
-import {Settings} from '../Components/Settings/Settings';
+// import {Settings} from '../Components/RamadanTimings/RamadanTimings';
+import { RamadanTimings } from '../Components/RamadanTimings/RamadanTimings';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -35,23 +36,23 @@ export const TabNavigation = () => {
               // iconName = focused
               //   ? 'Home2'
               //   : 'Home2';
-            } else if (route.name === 'Events') {
+            } else if (route.name === 'About Us') {
               return (
                 <RowComponent localStyles={{
                   backgroundColor: focused ? '#e0f1f5' : '#fff',
                 }}>
                   <MoreCircle size={size} color={focused ? '#42a8c3' : '#676767'} variant='Bold'/>
-                  {focused && <Text style={[styles.tabLabel]}>Events</Text>}
+                  {focused && <Text style={[styles.tabLabel]}>About Us</Text>}
                 </RowComponent>
               );
               // iconName = focused ? 'Home2' : 'Home2';
-            } else if (route.name === 'Settings') {
+            } else if (route.name === 'RamadanTimings') {
               return (
                 <RowComponent localStyles={{
                   backgroundColor: focused ? '#e0f1f5' : '#fff',
                 }}>
                   <Setting2 size={size} color={focused ? '#42a8c3' : '#676767'} variant='Bold'/>
-                  {focused && <Text style={[styles.tabLabel]}>Settings</Text>}
+                  {focused && <Text style={[styles.tabLabel]}>Ramadan Timings</Text>}
                 </RowComponent>
               );
               // iconName = focused ? 'Home2' : 'Home2';
@@ -86,13 +87,13 @@ export const TabNavigation = () => {
           options={{headerShown: false}} // Hide the header for this specific screen
         />
         <Tab.Screen
-          name="Events"
-          component={Events}
-          options={{headerShown: false}} // Hide the header for this specific screen
+          name="About Us"
+          component={AboutUs}
+          options={{headerShown: true, headerStyle:{backgroundColor: "#F2D2C5"}, headerTitleAlign: 'center',}} // Hide the header for this specific screen
         />
         <Tab.Screen
-          name="Settings"
-          component={Settings}
+          name="RamadanTimings"
+          component={RamadanTimings}
           options={{headerShown: false}} // Hide the header for this specific screen
         />
         {/* <Tab.Screen

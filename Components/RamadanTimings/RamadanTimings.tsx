@@ -1,8 +1,8 @@
 import { Text } from 'native-base'
 import React from 'react'
 
-export const Events = () => {
+export const RamadanTimings = () => {
   return (
-   <Text>Hello World</Text>
+    <Text>Hello World</Text>
   )
 }
