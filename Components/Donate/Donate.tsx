@@ -12,28 +12,40 @@ export const Donate = () => {
       </Text>
       <View style={styles.donationIconsContainer}>
         <View style={styles.row1}>
-        <Image
-            source={require('../Donate/img/pp.png')}
-            style={styles.icon1}
-            alt="Paypal Logo"
-          />
-        <Image
-            source={require('../Donate/img/zell.png')}
-            style={styles.icon1}
-            alt="Zelle Logo"
-          />
+          <View style={styles.iconContainer}>
+            <Image
+              source={require('../Donate/img/pp.png')}
+              style={styles.icon1}
+              alt="Paypal Logo"
+            />
+            <Text style={styles.iconTitle}>Paypal</Text>
+          </View>
+          <View style={styles.iconContainer}>
+            <Image
+              source={require('../Donate/img/z.png')}
+              style={styles.icon1}
+              alt="Zelle Logo"
+            />
+            <Text style={styles.iconTitle}>Zelle</Text>
+          </View>
         </View>
         <View style={styles.row2}>
-        <Image
-            source={require('../Donate/img/ca.png')}
-            style={styles.icon2}
-            alt="Paypal Logo"
-          />
-        <Image
-            source={require('../Donate/img/v.png')}
-            style={styles.icon2}
-            alt="Zelle Logo"
-          />
+          <View style={styles.iconContainer}>
+            <Image
+              source={require('../Donate/img/ca.png')}
+              style={styles.icon2}
+              alt="CashApp Logo"
+            />
+            <Text style={styles.iconTitle}>CashApp</Text>
+          </View>
+          <View style={styles.iconContainer}>
+            <Image
+              source={require('../Donate/img/v.png')}
+              style={styles.icon2}
+              alt="Venmo Logo"
+            />
+            <Text style={styles.iconTitle}>Venmo</Text>
+          </View>
         </View>
       </View>
     </View>
@@ -53,9 +65,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 25,
   },
-  donationIconsContainer:{
-    // borderWidth: 2,
-    // borderColor: 'blue',
+  donationIconsContainer: {
     width: '100%',
     marginTop: 10,
   },
@@ -68,16 +78,33 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    marginVertical: 20
+    marginVertical: 20,
+  },
+  iconContainer: {
+    alignItems: 'center',
+    backgroundColor: '#F0F0F0',
+    borderColor: '#fff',
+    borderWidth: 2,
+    borderRadius: 20,
+    padding: 10,
+    width: '40%',
   },
   icon1: {
-    width: 150,
-    height: 60,
-    borderRadius: 10,
+    width: 90,
+    height: 90,
+    borderRadius: 45,
+    borderWidth: 2,
   },
   icon2: {
-    width: 150,
+    width: 90,
     height: 90,
-    borderRadius: 10,
+    borderRadius: 45,
+  },
+  iconTitle: {
+    marginTop: 5,
+    color: 'black',
+    fontSize: 16,
+    fontWeight: 'bold',
+    letterSpacing: 2
   },
 });

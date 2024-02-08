@@ -26,18 +26,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imagediv: {
-    width: 350,
+    width: "100%",
     height: 190,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: '40%',
-    marginTop: "20%"
+    // marginBottom: '40%',
+    // marginTop: "20%"
   },
   img: {
-    width: 320,
+    width: "100%",
     height: 190,
     marginRight: 10,
     marginLeft: 10,
-    borderRadius: 30,
+    // borderRadius: 30,
   },
 });

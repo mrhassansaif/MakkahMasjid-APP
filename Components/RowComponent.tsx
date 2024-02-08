@@ -1,17 +1,17 @@
-// import { View, Text, StyledProps, ViewStyle } from 'native-base'
-import {View, Text, StyleProp, ViewStyle} from 'react-native';
-import React, { ReactNode } from 'react';
+import React from 'react';
+import { View, TouchableOpacity, StyleProp, ViewStyle } from 'react-native';
 import { styles } from '../styles/global';
 
 interface Props {
-  children: any;
+  children: React.ReactNode;
   localStyles?: StyleProp<ViewStyle>;
+  onPress?: () => void;
 }
 
 const RowComponent = (props: Props) => {
-  const {children, localStyles} = props;
+  const { children, localStyles, onPress } = props;
 
-  return (
+  const content = (
     <View
       style={[
         localStyles,
@@ -21,10 +21,17 @@ const RowComponent = (props: Props) => {
           paddingHorizontal: 8,
           paddingVertical: 4,
         },
-      ]}>
+      ]}
+    >
       {children}
     </View>
   );
+
+  if (onPress) {
+    return <TouchableOpacity onPress={onPress}>{content}</TouchableOpacity>;
+  }
+
+  return content;
 };
 
 export default RowComponent;

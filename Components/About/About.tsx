@@ -2,12 +2,12 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {View, Image, Text} from 'native-base';
 
-export const AboutUs = () => {
+export const About = () => {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.imagediv}>
         <Image
-          source={require('../AboutUs/img/aboutbg.jpg')}
+          source={require('../About/img/aboutbg.jpg')}
           style={styles.img}
           alt="About Us Background"
         />

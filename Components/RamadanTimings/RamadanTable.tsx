@@ -6,8 +6,8 @@ import axios from 'axios';
 const RamadanTable = () => {
   const [tableData, setTableData] = useState<string[][]>([]);
 
-  const headerStyle = {backgroundColor: '#aeebf9'};
-  const rowStyle = {backgroundColor: '#00c0ea'};
+  const headerStyle = {backgroundColor: 'black'};
+  const rowStyle = {backgroundColor: 'black'};
 
   const convertTo12HourFormat = (time24Hour: string) => {
     const [hours, minutes] = time24Hour.split(':');
@@ -77,13 +77,12 @@ const RamadanTable = () => {
     };
 
     fetchNamazTimings();
-  }, []); // Empty dependency array ensures useEffect runs only once when the component mounts
-
+  }, []);
   return (
     <View style={styles.container}>
       <ScrollView horizontal={true}>
         <View style={styles.innerContainer}>
-          <Table style={styles.tablecontainer}>
+          <Table>
             <Row
               data={['Prayer', 'Azan', 'Iqamah']}
               style={[styles.header, headerStyle]}
@@ -108,25 +107,28 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
-    borderTopStartRadius: 30,
-    borderTopEndRadius: 30,
+    // borderTopStartRadius: 30,
+    // borderTopEndRadius: 30,
+    height: 500,
+    backgroundColor: 'black',
   },
   innerContainer: {
-    marginLeft: 2,
+    marginLeft: 20,
     marginRight: 2,
     width: 353,
-    backgroundColor: 'white',
-    borderTopStartRadius: 30,
-    borderTopEndRadius: 30,
+    // borderTopStartRadius: 30,
+    // borderTopEndRadius: 30,
+    // height: 100,
   },
-  tablecontainer: {height: 50},
   header: {
     height: 50,
     justifyContent: 'center',
-    borderTopStartRadius: 30,
-    borderTopEndRadius: 30,
+    // borderTopStartRadius: 30,
+    // borderTopEndRadius: 30,
+    backgroundColor: 'black'
+    
   },
-  text: {textAlign: 'center', fontWeight: 'bold', margin: 5, color: 'black'},
+  text: {textAlign: 'left', fontWeight: 'bold', margin: 5, color: 'white'},
   row: {flexDirection: 'row', justifyContent: 'center'},
 });
 

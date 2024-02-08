@@ -26,6 +26,14 @@ export const Home = () => {
     navigation.navigate('Dua' as never); // explicitly type as 'never'
   };
 
+  const handleRamadanTimingsIconPress = () => {
+    navigation.navigate('RamadanTimings' as never); // explicitly type as 'never'
+  };
+
+  const handleEventsIconPress = () => {
+    navigation.navigate('Events' as never); // explicitly type as 'never'
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.div1}>
@@ -70,20 +78,24 @@ export const Home = () => {
           </View>
           <View style={styles.iconsrow2}>
             <View style={styles.iconWithText}>
-              <Image
-                source={require('../Home/img/Event.png')}
-                style={styles.icon}
-                alt=""
-              />
+              <TouchableOpacity onPress={handleEventsIconPress}>
+                <Image
+                  source={require('../Home/img/Event.png')}
+                  style={styles.icon}
+                  alt=""
+                />
+              </TouchableOpacity>
               <Text style={styles.iconTitle}>Events</Text>
             </View>
             <View style={styles.iconWithText}>
-              <Image
-                source={require('../Home/img/Location.png')}
-                style={styles.icon}
-                alt=""
-              />
-              <Text style={styles.iconTitle}>Location</Text>
+              <TouchableOpacity onPress={handleRamadanTimingsIconPress}>
+                <Image
+                  source={require('../Home/img/rticon.png')}
+                  style={styles.icon}
+                  alt=""
+                />
+              </TouchableOpacity>
+              <Text style={styles.iconTitle}>Ramadan Timings</Text>
             </View>
             <View style={styles.iconWithText}>
               <TouchableOpacity onPress={handleYoutubeIconPress}>

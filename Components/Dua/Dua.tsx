@@ -1,44 +1,63 @@
-import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
+import Loader from './Loader';
 
 const Dua = () => {
+  const [loading, setLoading] = useState(true);
   const [randomAyahs, setRandomAyahs] = useState<
-    Array<{english: string; arabic: string}>
+    Array<{ english: string; arabic: string }>
   >([]);
 
   useEffect(() => {
-    // Fetch 3 random Ayahs from a specific Surah with both English and Arabic translations
     const fetchRandomAyahs = async () => {
       try {
-        const surahNumber = Math.floor(Math.random() * 114) + 1; // Random Surah number between 1 and 114
+        // Check if the stored dua exists and is still valid (less than 24 hours old)
+        const storedDua = await AsyncStorage.getItem('randomDua');
+        const storedTimestamp = await AsyncStorage.getItem('duaTimestamp');
+        const currentTimestamp = Date.now();
 
-        // Fetch English translation
-        const englishResponse = await axios.get(
-          `https://api.alquran.cloud/v1/surah/${surahNumber}/en.asad`,
-        );
-        const englishAyahs = englishResponse.data.data.ayahs;
+        if (
+          storedDua &&
+          storedTimestamp &&
+          currentTimestamp - parseInt(storedTimestamp) < 24 * 60 * 60 * 1000
+        ) {
+          setRandomAyahs(JSON.parse(storedDua));
+          setLoading(false);
+        } else {
+          const surahNumber = Math.floor(Math.random() * 114) + 1;
 
-        // Fetch Arabic translation
-        const arabicResponse = await axios.get(
-          `https://api.alquran.cloud/v1/surah/${surahNumber}`,
-        );
-        const arabicAyahs = arabicResponse.data.data.ayahs;
+          const englishResponse = await axios.get(
+            `https://api.alquran.cloud/v1/surah/${surahNumber}/en.asad`
+          );
+          const englishAyahs = englishResponse.data.data.ayahs;
 
-        // Combine English and Arabic translations
-        const randomAyahsArray: Array<{english: string; arabic: string}> = [];
+          const arabicResponse = await axios.get(
+            `https://api.alquran.cloud/v1/surah/${surahNumber}`
+          );
+          const arabicAyahs = arabicResponse.data.data.ayahs;
 
-        for (let i = 0; i < 2; i++) {
-          const randomIndex = Math.floor(Math.random() * englishAyahs.length);
-          randomAyahsArray.push({
-            english: englishAyahs[randomIndex].text,
-            arabic: arabicAyahs[randomIndex].text,
-          });
+          const randomAyahsArray: Array<{ english: string; arabic: string }> = [];
+
+          for (let i = 0; i < 2; i++) {
+            const randomIndex = Math.floor(Math.random() * englishAyahs.length);
+            randomAyahsArray.push({
+              english: englishAyahs[randomIndex].text,
+              arabic: arabicAyahs[randomIndex].text,
+            });
+          }
+
+          // Save the new dua along with the timestamp
+          await AsyncStorage.setItem('randomDua', JSON.stringify(randomAyahsArray));
+          await AsyncStorage.setItem('duaTimestamp', currentTimestamp.toString());
+
+          setRandomAyahs(randomAyahsArray);
+          setLoading(false);
         }
-
-        setRandomAyahs(randomAyahsArray);
       } catch (error) {
         console.error('Error fetching Ayahs:', error);
+        setLoading(false);
       }
     };
 
@@ -47,21 +66,28 @@ const Dua = () => {
 
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.duaContainer}>
-        <Text style={styles.title}>Dua's in English & Arabic Tranlation</Text>
-        {randomAyahs.map((ayah, index) => (
-          <View key={index} style={{marginBottom: 20}}>
-            <Text style={styles.ayahTextEng}>{ayah.english}</Text>
-            <Text style={styles.ayahTextArabic}>{ayah.arabic}</Text>
-          </View>
-        ))}
-      </View>
+      {loading ? (
+        <Loader />
+      ) : (
+        <View style={styles.duaContainer}>
+          <Text style={styles.title}>
+            Dua's in English & Arabic Translation
+          </Text>
+          {randomAyahs.map((ayah, index) => (
+            <View key={index} style={{ marginBottom: 20 }}>
+              <Text>
+                -----------------------------------------------------------------------------</Text>
+              <Text style={styles.ayahTextEng}>{ayah.english}</Text>
+              <Text style={styles.ayahTextArabic}>{ayah.arabic}</Text>
+            </View>
+          ))}
+        </View>
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-    
   mainContainer: {
     flex: 1,
     alignItems: 'center',
@@ -70,10 +96,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#f2d2c4',
   },
   duaContainer: {
-    // flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    // padding: 20,
     width: '90%',
     maxHeight: 800,
     borderWidth: 2,
@@ -86,14 +110,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
     color: 'black',
-    margin: 10
+    margin: 10,
   },
   ayahTextEng: {
     fontSize: 16,
     textAlign: 'left',
     margin: 10,
     color: 'brown',
-    overflow: 'scroll'
+    overflow: 'scroll',
   },
   ayahTextArabic: {
     fontSize: 16,

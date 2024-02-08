@@ -3,8 +3,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import {Home} from '../Components/Home/Home';
-import {Home2, Mobile, More, MoreCircle, Setting2} from 'iconsax-react-native';
-import {AboutUs} from '../Components/AboutUs/AboutUs';
+import {ArchiveBook, Home2, Location} from 'iconsax-react-native';
+import {About} from '../Components/About/About';
 import RowComponent from '../Components/RowComponent';
 import {styles} from '../styles/global';
 import {Text} from 'native-base';
@@ -12,17 +12,23 @@ import {RamadanTimings} from '../Components/RamadanTimings/RamadanTimings';
 import {Donate} from '../Components/Donate/Donate';
 import Dua from '../Components/Dua/Dua';
 
+import {Linking} from 'react-native'; // Add this line
+import {Events} from '../Components/Events/Events';
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export const TabNavigation = () => {
+  const openLocationLink = () => {
+    Linking.openURL('https://maps.app.goo.gl/h6ojwYvdYvYBfe9G7');
+  };
+
   function MyTabs() {
     return (
       <Tab.Navigator
         screenOptions={({route}) => ({
-          tabBarIcon: ({focused, color, size}) => {
+          tabBarIcon: ({focused, size}) => {
             size = 20;
-            let iconName;
 
             if (route.name === 'Home') {
               return (
@@ -38,13 +44,13 @@ export const TabNavigation = () => {
                   {focused && <Text style={[styles.tabLabel]}>Home</Text>}
                 </RowComponent>
               );
-            } else if (route.name === 'About Us') {
+            } else if (route.name === 'About') {
               return (
                 <RowComponent
                   localStyles={{
                     backgroundColor: focused ? '#e0f1f5' : '#fff',
                   }}>
-                  <MoreCircle
+                  <ArchiveBook
                     size={size}
                     color={focused ? '#42a8c3' : '#676767'}
                     variant="Bold"
@@ -52,24 +58,24 @@ export const TabNavigation = () => {
                   {focused && <Text style={[styles.tabLabel]}>About Us</Text>}
                 </RowComponent>
               );
-            } else if (route.name === 'RamadanTimings') {
+            } else if (route.name === 'Location') {
               return (
                 <RowComponent
                   localStyles={{
-                    backgroundColor: focused ? '#e0f1f5' : '#fff',
-                  }}>
-                  <Setting2
+                    backgroundColor: '#fff', // Set background color without conditional check
+                  }}
+                  onPress={openLocationLink} // Handle the onPress event to open the link
+                >
+                  <Location
                     size={size}
-                    color={focused ? '#42a8c3' : '#676767'}
+                    color={'#676767'} // Set the color without conditional check
                     variant="Bold"
                   />
-                  {focused && (
-                    <Text style={[styles.tabLabel]}>Ramadan Timings</Text>
-                  )}
+                  <Text style={[styles.tabLabel]}>Location</Text>
                 </RowComponent>
               );
             }
-            return <Home2 size={size} color={color} />;
+            return null; // Return null for tabs that don't need to render an icon
           },
           tabBarActiveTintColor: 'tomato',
           tabBarInactiveTintColor: '#e0f1f5',
@@ -87,17 +93,18 @@ export const TabNavigation = () => {
           options={{headerShown: false}}
         />
         <Tab.Screen
-          name="About Us"
-          component={AboutUs}
+          name="About"
+          component={About}
           options={{
             headerShown: true,
             headerStyle: {backgroundColor: '#F2D2C5'},
             headerTitleAlign: 'center',
+            headerShadowVisible: false,
           }}
         />
         <Tab.Screen
-          name="RamadanTimings"
-          component={RamadanTimings}
+          name="Location"
+          component={Location}
           options={{headerShown: false}}
         />
       </Tab.Navigator>
@@ -115,6 +122,7 @@ export const TabNavigation = () => {
             headerShown: true,
             headerTitleAlign: 'center',
             headerStyle: {backgroundColor: '#F2D2C5'},
+            headerShadowVisible: false,
           }}
         />
         <Stack.Screen
@@ -124,6 +132,27 @@ export const TabNavigation = () => {
             headerShown: true,
             headerTitleAlign: 'center',
             headerStyle: {backgroundColor: '#F2D2C5'},
+            headerShadowVisible: false,
+          }}
+        />
+        <Stack.Screen
+          name="RamadanTimings"
+          component={RamadanTimings}
+          options={{
+            headerShown: true,
+            headerTitleAlign: 'center',
+            headerStyle: {backgroundColor: '#F2D2C5'},
+            headerShadowVisible: false,
+          }}
+        />
+        <Stack.Screen
+          name="Events"
+          component={Events}
+          options={{
+            headerShown: true,
+            headerTitleAlign: 'center',
+            headerStyle: {backgroundColor: '#F2D2C5'},
+            headerShadowVisible: false,
           }}
         />
       </Stack.Navigator>
