@@ -71,7 +71,7 @@ export const TabNavigation = () => {
                     color={'#676767'} // Set the color without conditional check
                     variant="Bold"
                   />
-                  <Text style={[styles.tabLabel]}>Location</Text>
+                  {focused && <Text style={[styles.tabLabel]}>Location</Text>}
                 </RowComponent>
               );
             }
