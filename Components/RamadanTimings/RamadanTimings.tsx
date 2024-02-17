@@ -1,6 +1,6 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import {View, Image, Text} from 'native-base';
+import { StyleSheet, ScrollView } from 'react-native';
+import { View, Image } from 'native-base';
 import RamadanTable from './RamadanTable';
 
 export const RamadanTimings = () => {
@@ -8,12 +8,14 @@ export const RamadanTimings = () => {
     <View style={styles.mainContainer}>
       <View style={styles.imagediv}>
         <Image
-          source={require('../RamadanTimings/img/r.png')}
+          source={require('../RamadanTimings/img/ramadanKareem.jpg')}
           style={styles.img}
           alt="Ramadan Timings Bg"
         />
       </View>
-      <RamadanTable />
+      <ScrollView style={styles.scrollView}>
+        <RamadanTable />
+      </ScrollView>
     </View>
   );
 };
@@ -22,22 +24,19 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     backgroundColor: '#F2D2C5',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   imagediv: {
-    width: "100%",
+    width: '100%',
     height: 190,
     justifyContent: 'center',
     alignItems: 'center',
-    // marginBottom: '40%',
-    // marginTop: "20%"
   },
   img: {
-    width: "100%",
+    width: '100%',
     height: 190,
-    marginRight: 10,
-    marginLeft: 10,
-    // borderRadius: 30,
+  },
+  scrollView: {
+    flex: 1,
+    marginTop: 20, // Adjust as needed
   },
 });

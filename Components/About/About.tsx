@@ -7,7 +7,7 @@ export const About = () => {
     <View style={styles.mainContainer}>
       <View style={styles.imagediv}>
         <Image
-          source={require('../About/img/aboutbg.jpg')}
+          source={require('../About/img/masjid2009.png')}
           style={styles.img}
           alt="About Us Background"
         />
@@ -37,6 +37,7 @@ export const About = () => {
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   mainContainer: {
