@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -6,12 +6,16 @@ import {
   Image,
   TouchableOpacity,
   Linking,
+  Modal,
 } from 'react-native';
 import NamazTable from './NamazTable';
 import {useNavigation} from '@react-navigation/native';
+import {WebView} from 'react-native-webview';
 
 export const Home = () => {
   const navigation = useNavigation();
+  const [showWebView, setShowWebView] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const handleDonateIconPress = () => {
     navigation.navigate('Donate' as never); // explicitly type as 'never'
@@ -32,6 +36,10 @@ export const Home = () => {
 
   const handleEventsIconPress = () => {
     navigation.navigate('Events' as never); // explicitly type as 'never'
+  };
+
+  const handleQiblaIconPress = () => {
+    setModalVisible(!modalVisible);
   };
 
   return (
@@ -68,11 +76,13 @@ export const Home = () => {
               <Text style={styles.iconTitle}>Dua</Text>
             </View>
             <View style={styles.iconWithText}>
-              <Image
-                source={require('../Home/img/Qibla.png')}
-                style={styles.icon}
-                alt=""
-              />
+              <TouchableOpacity onPress={handleQiblaIconPress}>
+                <Image
+                  source={require('../Home/img/Qibla.png')}
+                  style={styles.icon}
+                  alt=""
+                />
+              </TouchableOpacity>
               <Text style={styles.iconTitle}>Qibla</Text>
             </View>
           </View>
@@ -111,6 +121,25 @@ export const Home = () => {
         </View>
       </View>
       <NamazTable />
+      <Modal
+        animationType="slide"
+        transparent={false}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(false);
+        }}>
+        <View style={{flex: 1}}>
+          <WebView
+            source={{uri: 'https://qiblafinder.withgoogle.com/intl/en/'}}
+            style={{flex: 1}}
+          />
+          <TouchableOpacity
+            onPress={() => {
+              setModalVisible(false);
+            }}>
+          </TouchableOpacity>
+        </View>
+      </Modal>
     </View>
   );
 };
