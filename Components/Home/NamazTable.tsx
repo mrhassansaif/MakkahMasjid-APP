@@ -29,7 +29,6 @@ const NamazTable = () => {
       const azanTiming = await fetchAzanTiming(timing.namazName); // Fetch Azan timing
       formattedTimings.push([timing.namazName, azanTiming, timing.timing]);
     }
-    formattedTimings.push(["Jumu'ah Khutba", "", "2:10 PM/2:30 PM"]); // Hardcoded Jumu'ah Khutba row
     setTableData(formattedTimings);
   };
 
@@ -42,16 +41,36 @@ const NamazTable = () => {
       const currentDate = new Date();
       const formattedDate = `${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`;
       const apiUrl = `https://api.aladhan.com/v1/timings/${formattedDate}?latitude=${latitude}&longitude=${longitude}&method=${calculationMethod}&timezone=${timezone}&school=1`;
-
+  
       const response = await axios.get(apiUrl);
       const prayerTimings = response.data.data.timings;
-
-      return prayerTimings[namazName];
+  
+      console.log('Prayer Timings:', prayerTimings); // Log prayerTimings object
+  
+      // Check if namazName exists in prayerTimings
+      if (prayerTimings && prayerTimings.hasOwnProperty(namazName)) {
+        const azanTime24hr = prayerTimings[namazName];
+  
+        // Convert 24-hour format to 12-hour format
+        const azanTime12hr = azanTime24hr.split(':').map((str: string, index: number) => {
+          if (index === 0) {
+            return parseInt(str, 10) % 12 || 12; // Convert hour part
+          } else {
+            return str; // Keep minute part as it is
+          }
+        }).join(':');
+  
+        return azanTime12hr;
+      } else {
+        console.error(`Namaz name "${namazName}" not found in prayer timings.`);
+        return '';
+      }
     } catch (error) {
       console.error('Error fetching Azan timing:', error);
       return '';
     }
   };
+  
 
   return (
     <View style={styles.container}>
