@@ -13,7 +13,7 @@ import {Donate} from '../Components/Donate/Donate';
 import Dua from '../Components/Dua/Dua';
 
 import {Linking} from 'react-native'; // Add this line
-import {Events} from '../Components/Events/Events';
+import {News} from '../Components/Events/News';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -146,8 +146,8 @@ export const TabNavigation = () => {
           }}
         />
         <Stack.Screen
-          name="Events"
-          component={Events}
+          name="News"
+          component={News}
           options={{
             headerShown: true,
             headerTitleAlign: 'center',

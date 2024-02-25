@@ -1,8 +1,25 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Linking, TouchableOpacity} from 'react-native';
 import {View, Image, Text} from 'native-base';
 
 export const Donate = () => {
+  const handlePaypalIconPress = () => {
+    // Open YouTube link
+    Linking.openURL('https://www.paypal.com/qrcodes/managed/919aa092-be5e-4cef-a6a1-31ef0f19f268?utm_source=hawk_quick_link');
+  };
+  const handleZelleIconPress = () => {
+    // Open YouTube link
+    Linking.openURL('https://enroll.zellepay.com/qr-codes?data=ewogICJuYW1lIiA6ICJJU0xBTUlDIERJUkVDVElPTlMgJiBFTkhBTkNFTUVOVCBBU1NPQyBEIiwKICAidG9rZW4iIDogIm1ha2thaG1hc2ppZGdhcmxhbmRAZ21haWwuY29tIiwKICAiYWN0aW9uIiA6ICJwYXltZW50Igp9');
+  };
+  const handleCashAppIconPress = () => {
+    // Open YouTube link
+    Linking.openURL('http://$MakkahMasjid');
+  };
+  const handleVenmoIconPress = () => {
+    // Open YouTube link
+    Linking.openURL('http://@MakkahMasjid');
+  };
+
   return (
     <View style={styles.mainContainer}>
       <Text style={styles.alarmingText}>
@@ -13,37 +30,48 @@ export const Donate = () => {
       <View style={styles.donationIconsContainer}>
         <View style={styles.row1}>
           <View style={styles.iconContainer}>
-            <Image
-              source={require('../Donate/img/pp.png')}
-              style={styles.icon1}
-              alt="Paypal Logo"
-            />
+            <TouchableOpacity onPress={handlePaypalIconPress}>
+              <Image
+                source={require('../Donate/img/pp.png')}
+                style={styles.icon1}
+                alt="Paypal Logo"
+              />
+            </TouchableOpacity>
             <Text style={styles.iconTitle}>Paypal</Text>
           </View>
           <View style={styles.iconContainer}>
-            <Image
-              source={require('../Donate/img/z.png')}
-              style={styles.icon1}
-              alt="Zelle Logo"
-            />
+            <TouchableOpacity onPress={handleZelleIconPress}>
+              <Image
+                source={require('../Donate/img/z.png')}
+                style={styles.icon1}
+                alt="Zelle Logo"
+              />
+            </TouchableOpacity>
+
             <Text style={styles.iconTitle}>Zelle</Text>
           </View>
         </View>
         <View style={styles.row2}>
           <View style={styles.iconContainer}>
-            <Image
-              source={require('../Donate/img/ca.png')}
-              style={styles.icon2}
-              alt="CashApp Logo"
-            />
+            <TouchableOpacity onPress={handleCashAppIconPress}>
+              <Image
+                source={require('../Donate/img/ca.png')}
+                style={styles.icon2}
+                alt="CashApp Logo"
+              />
+            </TouchableOpacity>
+
             <Text style={styles.iconTitle}>CashApp</Text>
           </View>
           <View style={styles.iconContainer}>
-            <Image
-              source={require('../Donate/img/v.png')}
-              style={styles.icon2}
-              alt="Venmo Logo"
-            />
+            <TouchableOpacity onPress={handleVenmoIconPress}>
+              <Image
+                source={require('../Donate/img/v.png')}
+                style={styles.icon2}
+                alt="Venmo Logo"
+              />
+            </TouchableOpacity>
+
             <Text style={styles.iconTitle}>Venmo</Text>
           </View>
         </View>
@@ -105,6 +133,6 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 16,
     fontWeight: 'bold',
-    letterSpacing: 2
+    letterSpacing: 2,
   },
 });

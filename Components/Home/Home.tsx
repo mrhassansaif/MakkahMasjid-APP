@@ -23,7 +23,7 @@ export const Home = () => {
 
   const handleYoutubeIconPress = () => {
     // Open YouTube link
-    Linking.openURL('https://www.youtube.com/@makkahmasjid6399');
+    Linking.openURL('https://www.youtube.com/@makkahmasjidgarland');
   };
 
   const handleDuaIconPress = () => {
@@ -35,7 +35,7 @@ export const Home = () => {
   };
 
   const handleEventsIconPress = () => {
-    navigation.navigate('Events' as never); // explicitly type as 'never'
+    navigation.navigate('News' as never); // explicitly type as 'never'
   };
 
   const handleQiblaIconPress = () => {
@@ -95,7 +95,7 @@ export const Home = () => {
                   alt=""
                 />
               </TouchableOpacity>
-              <Text style={styles.iconTitle}>Events</Text>
+              <Text style={styles.iconTitle}>News</Text>
             </View>
             <View style={styles.iconWithText}>
               <TouchableOpacity onPress={handleRamadanTimingsIconPress}>

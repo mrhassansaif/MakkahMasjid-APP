@@ -17,7 +17,7 @@ type NewsType = {
   content: string;
 };
 
-export const Events = () => {
+export const News = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedNews, setSelectedNews] = useState<NewsType | null>(null);
   const [newsData, setNewsData] = useState<NewsType[]>([]);
