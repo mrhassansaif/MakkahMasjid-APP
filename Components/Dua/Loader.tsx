@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import { View, Animated, StyleSheet, Easing } from 'react-native';
+import { View, Animated, StyleSheet, Easing,Text} from 'react-native';
+// import { Text } from 'react-native-svg';
 
 const Loader = () => {
   const pulseAnimation = useRef(new Animated.Value(0)).current;
@@ -40,6 +41,7 @@ const Loader = () => {
           },
         ]}
       ></Animated.View>
+
     </View>
   );
 };

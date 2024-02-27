@@ -67,7 +67,10 @@ const Dua = () => {
   return (
     <View style={styles.mainContainer}>
       {loading ? (
-        <Loader />
+        <View style={styles.loaderContainer}>
+          <Loader />
+          <Text style={styles.loadingText}>Loading...</Text>
+        </View>
       ) : (
         <View style={styles.duaContainer}>
           <Text style={styles.title}>
@@ -126,6 +129,16 @@ const styles = StyleSheet.create({
     color: '#712c09',
     fontWeight: 'bold',
     overflow: 'scroll',
+  },
+  loaderContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  loadingText: {
+    marginTop: 10,
+    fontSize: 16,
+    color: '#000',
+    textAlign: 'center',
   },
 });
 

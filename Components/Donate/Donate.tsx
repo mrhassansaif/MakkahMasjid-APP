@@ -1,32 +1,39 @@
 import React from 'react';
-import {StyleSheet, Linking, TouchableOpacity} from 'react-native';
-import {View, Image, Text} from 'native-base';
+import { StyleSheet, Linking, TouchableOpacity } from 'react-native';
+import { View, Image, Text } from 'native-base';
 
 export const Donate = () => {
   const handlePaypalIconPress = () => {
-    // Open YouTube link
+    // Open PayPal link
     Linking.openURL('https://www.paypal.com/qrcodes/managed/919aa092-be5e-4cef-a6a1-31ef0f19f268?utm_source=hawk_quick_link');
   };
   const handleZelleIconPress = () => {
-    // Open YouTube link
+    // Open Zelle link
     Linking.openURL('https://enroll.zellepay.com/qr-codes?data=ewogICJuYW1lIiA6ICJJU0xBTUlDIERJUkVDVElPTlMgJiBFTkhBTkNFTUVOVCBBU1NPQyBEIiwKICAidG9rZW4iIDogIm1ha2thaG1hc2ppZGdhcmxhbmRAZ21haWwuY29tIiwKICAiYWN0aW9uIiA6ICJwYXltZW50Igp9');
   };
   const handleCashAppIconPress = () => {
-    // Open YouTube link
+    // Open CashApp link
     Linking.openURL('http://$MakkahMasjid');
   };
   const handleVenmoIconPress = () => {
-    // Open YouTube link
+    // Open Venmo link
     Linking.openURL('http://@MakkahMasjid');
+  };
+
+  const handlePhoneNumberPress = () => {
+    // Prompt to call or text the phone number
+    Linking.openURL('tel:972-897-2437');
   };
 
   return (
     <View style={styles.mainContainer}>
       <Text style={styles.alarmingText}>
         Kindly select from the available methods listed below, or feel free to
-        reach out to us via phone or text at 972-897-2437 for assistance. Thank
-        you.
+        reach out to us via phone or text us at the below given number for assistance. Thanks you
       </Text>
+      <TouchableOpacity onPress={handlePhoneNumberPress} style={styles.phoneNumberContainer}>
+        <Text style={styles.phoneNumber}>972-897-2437</Text>
+      </TouchableOpacity>
       <View style={styles.donationIconsContainer}>
         <View style={styles.row1}>
           <View style={styles.iconContainer}>
@@ -47,7 +54,6 @@ export const Donate = () => {
                 alt="Zelle Logo"
               />
             </TouchableOpacity>
-
             <Text style={styles.iconTitle}>Zelle</Text>
           </View>
         </View>
@@ -60,7 +66,6 @@ export const Donate = () => {
                 alt="CashApp Logo"
               />
             </TouchableOpacity>
-
             <Text style={styles.iconTitle}>CashApp</Text>
           </View>
           <View style={styles.iconContainer}>
@@ -71,7 +76,6 @@ export const Donate = () => {
                 alt="Venmo Logo"
               />
             </TouchableOpacity>
-
             <Text style={styles.iconTitle}>Venmo</Text>
           </View>
         </View>
@@ -92,6 +96,19 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     lineHeight: 25,
+    marginTop: 10,
+    marginBottom: 10,
+    marginHorizontal: 20
+  },
+  phoneNumberContainer: {
+    width: '100%',
+    alignItems: 'center',
+  },
+  phoneNumber: {
+    color: 'blue',
+    fontSize: 20,
+    fontWeight: 'bold',
+    textDecorationLine: 'underline',
   },
   donationIconsContainer: {
     width: '100%',
@@ -136,3 +153,5 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
   },
 });
+
+export default Donate;

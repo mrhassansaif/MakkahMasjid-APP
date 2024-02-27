@@ -3,9 +3,12 @@ import { View, StyleSheet, ScrollView } from 'react-native';
 import { Table, Row } from 'react-native-table-component';
 import { db, doc, onSnapshot } from '../Firebase/FirebaseConfig'; // Import Firestore functions
 import axios from 'axios';
+import SkeletonLoader from './SkeletonLoader';
 
 const NamazTable = () => {
   const [tableData, setTableData] = useState<string[][]>([]);
+  const [loading, setLoading] = useState(true); // Add loading state
+
   const headerStyle = { backgroundColor: '#aeebf9' };
   const rowStyle = { backgroundColor: '#00c0ea' };
 
@@ -30,6 +33,7 @@ const NamazTable = () => {
       formattedTimings.push([timing.namazName, azanTiming, timing.timing]);
     }
     setTableData(formattedTimings);
+    setLoading(false); // Set loading state to false after data fetching and formatting
   };
 
   const fetchAzanTiming = async (namazName: string) => {
@@ -41,16 +45,16 @@ const NamazTable = () => {
       const currentDate = new Date();
       const formattedDate = `${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`;
       const apiUrl = `https://api.aladhan.com/v1/timings/${formattedDate}?latitude=${latitude}&longitude=${longitude}&method=${calculationMethod}&timezone=${timezone}&school=1`;
-  
+
       const response = await axios.get(apiUrl);
       const prayerTimings = response.data.data.timings;
-  
+
       console.log('Prayer Timings:', prayerTimings); // Log prayerTimings object
-  
+
       // Check if namazName exists in prayerTimings
       if (prayerTimings && prayerTimings.hasOwnProperty(namazName)) {
         const azanTime24hr = prayerTimings[namazName];
-  
+
         // Convert 24-hour format to 12-hour format
         const azanTime12hr = azanTime24hr.split(':').map((str: string, index: number) => {
           if (index === 0) {
@@ -59,7 +63,7 @@ const NamazTable = () => {
             return str; // Keep minute part as it is
           }
         }).join(':');
-  
+
         return azanTime12hr;
       } else {
         console.error(`Namaz name "${namazName}" not found in prayer timings.`);
@@ -70,20 +74,23 @@ const NamazTable = () => {
       return '';
     }
   };
-  
 
   return (
     <View style={styles.container}>
-      <ScrollView horizontal={true}>
-        <View style={styles.innerContainer}>
-          <Table style={styles.tablecontainer}>
-            <Row data={['Prayer', 'Azan', 'Iqamah']} style={[styles.header, headerStyle]} textStyle={styles.text} />
-            {tableData.map((rowData, index) => (
-              <Row key={index} data={rowData} style={[styles.row, rowStyle]} textStyle={styles.text} />
-            ))}
-          </Table>
-        </View>
-      </ScrollView>
+      {loading ? (
+        <SkeletonLoader /> // Show skeleton loader while loading
+      ) : (
+        <ScrollView horizontal={true}>
+          <View style={styles.innerContainer}>
+            <Table style={styles.tablecontainer}>
+              <Row data={['Prayer', 'Azan', 'Iqamah']} style={[styles.header, headerStyle]} textStyle={styles.text} />
+              {tableData.map((rowData, index) => (
+                <Row key={index} data={rowData} style={[styles.row, rowStyle]} textStyle={styles.text} />
+              ))}
+            </Table>
+          </View>
+        </ScrollView>
+      )}
     </View>
   );
 };
