@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
-import { Table, Row } from 'react-native-table-component';
-import { db, doc, onSnapshot } from '../Firebase/FirebaseConfig'; // Import Firestore functions
+import React, {useEffect, useState} from 'react';
+import {View, StyleSheet, ScrollView} from 'react-native';
+import {Table, Row} from 'react-native-table-component';
+import {db, doc, onSnapshot} from '../Firebase/FirebaseConfig'; // Import Firestore functions
 import axios from 'axios';
 import SkeletonLoader from './SkeletonLoader';
 
@@ -9,11 +9,11 @@ const NamazTable = () => {
   const [tableData, setTableData] = useState<string[][]>([]);
   const [loading, setLoading] = useState(true); // Add loading state
 
-  const headerStyle = { backgroundColor: '#aeebf9' };
-  const rowStyle = { backgroundColor: '#00c0ea' };
+  const headerStyle = {backgroundColor: '#aeebf9'};
+  const rowStyle = {backgroundColor: '#00c0ea'};
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(doc(db, 'NamazTimings', '2024'), (docSnap) => {
+    const unsubscribe = onSnapshot(doc(db, 'NamazTimings', '2024'), docSnap => {
       if (docSnap.exists()) {
         const data = docSnap.data();
         if (data && data.timings) {
@@ -43,7 +43,9 @@ const NamazTable = () => {
       const calculationMethod = 1; // ISNA
       const timezone = 'America/Chicago';
       const currentDate = new Date();
-      const formattedDate = `${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`;
+      const formattedDate = `${currentDate.getDate()}-${
+        currentDate.getMonth() + 1
+      }-${currentDate.getFullYear()}`;
       const apiUrl = `https://api.aladhan.com/v1/timings/${formattedDate}?latitude=${latitude}&longitude=${longitude}&method=${calculationMethod}&timezone=${timezone}&school=1`;
 
       const response = await axios.get(apiUrl);
@@ -56,17 +58,20 @@ const NamazTable = () => {
         const azanTime24hr = prayerTimings[namazName];
 
         // Convert 24-hour format to 12-hour format
-        const azanTime12hr = azanTime24hr.split(':').map((str: string, index: number) => {
-          if (index === 0) {
-            return parseInt(str, 10) % 12 || 12; // Convert hour part
-          } else {
-            return str; // Keep minute part as it is
-          }
-        }).join(':');
+        const azanTime12hr = azanTime24hr
+          .split(':')
+          .map((str: string, index: number) => {
+            if (index === 0) {
+              return parseInt(str, 10) % 12 || 12; // Convert hour part
+            } else {
+              return str; // Keep minute part as it is
+            }
+          })
+          .join(':');
 
         return azanTime12hr;
       } else {
-        console.error(`Namaz name "${namazName}" not found in prayer timings.`);
+        console.log(`Namaz name "${namazName}" not found in prayer timings.`);
         return '';
       }
     } catch (error) {
@@ -83,9 +88,18 @@ const NamazTable = () => {
         <ScrollView horizontal={true}>
           <View style={styles.innerContainer}>
             <Table style={styles.tablecontainer}>
-              <Row data={['Prayer', 'Azan', 'Iqamah']} style={[styles.header, headerStyle]} textStyle={styles.text} />
+              <Row
+                data={['Prayer', 'Azan', 'Iqamah']}
+                style={{ ...styles.header, ...headerStyle}} // Ensure styles.header and headerStyle are objects
+                textStyle={{ ...styles.text}} // Pass styles.text directly as an object
+              />
               {tableData.map((rowData, index) => (
-                <Row key={index} data={rowData} style={[styles.row, rowStyle]} textStyle={styles.text} />
+                <Row
+                  key={index}
+                  data={rowData}
+                  style={{ ...styles.row, ...rowStyle}}
+                  textStyle={{ ...styles.text}}
+                /> // Ensure styles.row and rowStyle are objects
               ))}
             </Table>
           </View>
@@ -96,12 +110,29 @@ const NamazTable = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, width: '100%', borderTopStartRadius: 30, borderTopEndRadius: 30 },
-  innerContainer: { marginLeft: 2, marginRight: 2, width: 353, backgroundColor: 'white', borderTopStartRadius: 30, borderTopEndRadius: 30 },
-  tablecontainer: { height: 50 },
-  header: { height: 50, justifyContent: 'center', borderTopStartRadius: 30, borderTopEndRadius: 30 },
-  text: { textAlign: 'center', fontWeight: 'bold', margin: 5, color: 'black' },
-  row: { flexDirection: 'row', justifyContent: 'center' },
+  container: {
+    flex: 1,
+    width: '100%',
+    borderTopStartRadius: 30,
+    borderTopEndRadius: 30,
+  },
+  innerContainer: {
+    marginLeft: 2,
+    marginRight: 2,
+    width: 353,
+    backgroundColor: 'white',
+    borderTopStartRadius: 30,
+    borderTopEndRadius: 30,
+  },
+  tablecontainer: {height: 50},
+  header: {
+    height: 50,
+    justifyContent: 'center',
+    borderTopStartRadius: 30,
+    borderTopEndRadius: 30,
+  },
+  text: {textAlign: 'center', fontWeight: 'bold', margin: 5, color: 'black'},
+  row: {flexDirection: 'row', justifyContent: 'center'},
 });
 
 export default NamazTable;

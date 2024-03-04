@@ -259,11 +259,11 @@ const RamadanTable = () => {
           />
           {tableData.map((rowData, index) => (
             <Row
-              key={index}
-              data={index === tableData.length - 1 ? [rowData[0], rowData[1], rowData[2], "Eid Mubarak"] : rowData}
-              style={[styles.row, rowStyle]}
-              textStyle={styles.text}
-            />
+            key={index}
+            data={index === tableData.length - 1 ? [rowData[0], rowData[1], rowData[2], "Eid Mubarak"] : rowData}
+            style={[styles.row, rowStyle]} // This is the correct way to pass a style object
+            textStyle={styles.text}
+          />
           ))}
         </Table>
       </View>

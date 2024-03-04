@@ -1,14 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useLayoutEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native'; // Import useNavigation hook
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
 import Loader from './Loader';
 
 const Dua = () => {
+  const navigation = useNavigation(); // Initialize useNavigation hook
   const [loading, setLoading] = useState(true);
   const [randomAyahs, setRandomAyahs] = useState<
     Array<{ english: string; arabic: string }>
   >([]);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerBackTitle: 'Home', // Set the back button text to 'Home'
+    });
+  }, [navigation]);
 
   useEffect(() => {
     const fetchRandomAyahs = async () => {
