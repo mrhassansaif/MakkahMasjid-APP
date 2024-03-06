@@ -51,6 +51,7 @@ const SkeletonLoader = () => {
             />
           </View>
           <View style={styles.cell}>
+          {/* <View style={{ ...styles.cell}}> */}
             <Animated.View
               style={[
                 styles.shimmer,
