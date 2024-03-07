@@ -11,10 +11,11 @@ import {
 import NamazTable from './NamazTable';
 import {useNavigation} from '@react-navigation/native';
 import {WebView} from 'react-native-webview';
+import { Back } from 'iconsax-react-native';
 
 export const Home = () => {
   const navigation = useNavigation();
-  const [showWebView, setShowWebView] = useState(false);
+  // const [showWebView, setShowWebView] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleDonateIconPress = () => {
@@ -134,9 +135,11 @@ export const Home = () => {
             style={{flex: 1}}
           />
           <TouchableOpacity
+            style={styles.closeButton}
             onPress={() => {
               setModalVisible(false);
             }}>
+            <Back size={32} color="#FF8A65" />
           </TouchableOpacity>
         </View>
       </Modal>
@@ -214,5 +217,17 @@ const styles = StyleSheet.create({
   iconTitle: {
     fontSize: 14,
     color: 'black',
+  },
+  closeButton: {
+    position: 'absolute',
+    top: 70,
+    left: 10,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    padding: 10,
+    borderRadius: 50,
+  },
+  closeButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
   },
 });
