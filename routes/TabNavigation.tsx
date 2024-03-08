@@ -122,8 +122,7 @@ export const TabNavigation = () => {
           name="Contact"
           component={Contact}
           options={{
-            headerShown: false,
-            // headerBackVisible: true,
+            headerShown: true,
             headerStyle: {backgroundColor: '#F2D2C5'},
             headerTitleAlign: 'center',
             headerShadowVisible: false,

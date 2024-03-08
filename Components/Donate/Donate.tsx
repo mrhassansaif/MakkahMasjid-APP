@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { StyleSheet, Linking, TouchableOpacity } from 'react-native';
 import { View, Image, Text } from 'native-base';
+import { useNavigation } from '@react-navigation/native'; // Import useNavigation hook
+
 
 export const Donate = () => {
+  const navigation = useNavigation(); // Initialize useNavigation hook
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerBackTitle: 'Home', // Set the back button text to 'Home'
+    });
+  }, [navigation]);
+  
   const handlePaypalIconPress = () => {
     // Open PayPal link
     Linking.openURL('https://www.paypal.com/qrcodes/managed/919aa092-be5e-4cef-a6a1-31ef0f19f268?utm_source=hawk_quick_link');

@@ -66,15 +66,16 @@ export const Home = () => {
               </TouchableOpacity>
               <Text style={styles.iconTitle}>Donate</Text>
             </View>
+            
             <View style={styles.iconWithText}>
-              <TouchableOpacity onPress={handleDuaIconPress}>
+              <TouchableOpacity onPress={handleEventsIconPress}>
                 <Image
-                  source={require('../Home/img/dua.png')}
+                  source={require('../Home/img/Event.png')}
                   style={styles.icon}
                   alt=""
                 />
               </TouchableOpacity>
-              <Text style={styles.iconTitle}>Dua</Text>
+              <Text style={styles.iconTitle}>Announcements</Text>
             </View>
             <View style={styles.iconWithText}>
               <TouchableOpacity onPress={handleQiblaIconPress}>
@@ -88,15 +89,15 @@ export const Home = () => {
             </View>
           </View>
           <View style={styles.iconsrow2}>
-            <View style={styles.iconWithText}>
-              <TouchableOpacity onPress={handleEventsIconPress}>
+          <View style={styles.iconWithText}>
+              <TouchableOpacity onPress={handleDuaIconPress}>
                 <Image
-                  source={require('../Home/img/Event.png')}
+                  source={require('../Home/img/dua.png')}
                   style={styles.icon}
                   alt=""
                 />
               </TouchableOpacity>
-              <Text style={styles.iconTitle}>News</Text>
+              <Text style={styles.iconTitle}>Dua</Text>
             </View>
             <View style={styles.iconWithText}>
               <TouchableOpacity onPress={handleRamadanTimingsIconPress}>
@@ -139,7 +140,7 @@ export const Home = () => {
             onPress={() => {
               setModalVisible(false);
             }}>
-            <Back size={32} color="#FF8A65" />
+            <Back size={25} color="#FF8A65" />
           </TouchableOpacity>
         </View>
       </Modal>

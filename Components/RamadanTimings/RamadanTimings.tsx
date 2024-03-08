@@ -1,21 +1,25 @@
-import React from 'react';
-import { StyleSheet, ScrollView } from 'react-native';
+import React, { useLayoutEffect } from 'react';
+import { StyleSheet, ScrollView, Dimensions } from 'react-native'; // Import Dimensions
 import { View, Image } from 'native-base';
-import RamadanTable from './RamadanTable';
+import { useNavigation } from '@react-navigation/native'; // Import useNavigation hook
 
 export const RamadanTimings = () => {
+  const navigation = useNavigation(); // Initialize useNavigation hook
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerBackTitle: 'Home', // Set the back button text to 'Home'
+    });
+  }, [navigation]);
+
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.imagediv}>
-        <Image
-          source={require('../RamadanTimings/img/ramadanKareem.jpg')}
-          style={styles.img}
-          alt="Ramadan Timings Bg"
-        />
-      </View>
-      <ScrollView style={styles.scrollView}>
-        <RamadanTable />
-      </ScrollView>
+      <Image
+        source={require('../RamadanTimings/img/ramadan2024.jpg')}
+        alt="Ramadan Timings Bg"
+        style={styles.image}
+        resizeMode="contain" // Set resizeMode to contain
+      />
     </View>
   );
 };
@@ -24,19 +28,10 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     backgroundColor: '#F2D2C5',
+    paddingHorizontal: 10, // Add horizontal padding
   },
-  imagediv: {
-    width: '100%',
-    height: 190,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  img: {
-    width: '100%',
-    height: 190,
-  },
-  scrollView: {
+  image: {
     flex: 1,
-    marginTop: 20, // Adjust as needed
+    width: Dimensions.get('window').width - 20, // Set width to screen width - 20px padding
   },
 });

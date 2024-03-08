@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import {
   View,
   Text,
@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import { CloseCircle, InfoCircle } from 'iconsax-react-native';
 import { collection, doc, db, onSnapshot } from '../Firebase/FirebaseConfig'; // Import Firestore functions
+import { useNavigation } from '@react-navigation/native'; // Import useNavigation hook
+
 
 type NewsType = {
   id: string;
@@ -18,9 +20,16 @@ type NewsType = {
 };
 
 export const News = () => {
+  const navigation = useNavigation(); // Initialize useNavigation hook
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedNews, setSelectedNews] = useState<NewsType | null>(null);
   const [newsData, setNewsData] = useState<NewsType[]>([]);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerBackTitle: 'Home', // Set the back button text to 'Home'
+    });
+  }, [navigation]);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, 'News'), snapshot => {
